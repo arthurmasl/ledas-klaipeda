@@ -23,12 +23,15 @@ const myDate = () => {
 
 myDate();
 
+const apiUrl =
+  process.env.NODE_ENV === 'development' ? 'http://localhost:8000/api' : '/api';
+
 const App = () => {
   const [storage, setStorage] = useState([]);
   const [io, setIo] = useState();
 
   useEffect(() => {
-    axios.get('/api').then(res => {
+    axios.get(apiUrl).then(res => {
       let newRes = res.data;
 
       newRes = {
@@ -38,7 +41,7 @@ const App = () => {
 
           newItem = {
             ...newItem,
-            week: item.replace(/[(\d-\d)]+/g, ''),
+            week: item.replace(/[(\d-\d)]+/g, '').slice(0, 4),
             day: item.match(/[\d-\d]+/g)[0],
           };
 
@@ -103,13 +106,19 @@ const App = () => {
             {storage.content.map((item, i) => (
               <Cell key={i} type={item} icon>
                 <span>
-                  {item === 'available' && <FontAwesomeIcon icon="skating" />}
+                  {item === 'available' && (
+                    <FontAwesomeIcon icon="skating" size="lg" />
+                  )}
                 </span>
                 <span>
-                  {item === 'hockey' && <FontAwesomeIcon icon="hockey-puck" />}
+                  {item === 'hockey' && (
+                    <FontAwesomeIcon icon="hockey-puck" size="lg" />
+                  )}
                 </span>
                 <span>
-                  {item === 'figure' && <FontAwesomeIcon icon="snowflake" />}
+                  {item === 'figure' && (
+                    <FontAwesomeIcon icon="snowflake" size="lg" />
+                  )}
                 </span>
               </Cell>
             ))}
