@@ -48,7 +48,9 @@ const App = () => {
 
           return newItem;
         }),
-        time: newRes.time.slice(1, 13),
+        time: newRes.time.slice(1, 13).map(item => {
+          return { time1: item.slice(0, 5), time2: item.slice(6, 11) };
+        }),
         content: newRes.content
           .filter(item => item)
           .slice(0, 84)
@@ -91,7 +93,8 @@ const App = () => {
             <Cell type="black" empty />
             {storage.time.map((item, i) => (
               <Cell key={i} type="black">
-                <span>{item}</span>
+                <span>{item.time1}</span>
+                <span>{item.time2}</span>
               </Cell>
             ))}
           </Sidebar>
@@ -99,7 +102,8 @@ const App = () => {
           <Content>
             {storage.date.map((item, i) => (
               <Cell key={i} type="black" current={i === io}>
-                <span>{item.week}</span>
+                <span>{i + 1}</span>
+                {/* <span>{item.week}</span> */}
                 <span>{item.day}</span>
               </Cell>
             ))}

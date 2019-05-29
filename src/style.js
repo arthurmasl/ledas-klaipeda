@@ -53,7 +53,7 @@ export const Cell = styled.div`
   span {
     white-space: nowrap;
 
-    font-size: 1.9vmin;
+    font-size: 3.5vmin;
   }
 
   ${props =>
