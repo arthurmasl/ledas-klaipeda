@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
-import * as firebase from 'firebase';
-
 import { library } from '@fortawesome/fontawesome-svg-core';
 
 import {
@@ -13,7 +11,7 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { Container, Content, Grid, Sidebar, Cell, Workers } from './style';
+import { Container, Content, Grid, Sidebar, Cell } from './style';
 
 library.add(faSnowflake, faHockeyPuck, faSkating, faBolt);
 
