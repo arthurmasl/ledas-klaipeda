@@ -53,7 +53,7 @@ export const Cell = styled.div`
   span {
     white-space: nowrap;
 
-    font-size: 1.8vmin;
+    font-size: 1.9vmin;
   }
 
   ${props =>
@@ -84,7 +84,9 @@ export const Cell = styled.div`
         display: block;
         white-space: nowrap;
         overflow: hidden;
-        /* font-weight: 600; */
+
+        text-transform: uppercase;
+        font-weight: 600;
       }
     `};
 
