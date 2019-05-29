@@ -34,6 +34,7 @@ export const Content = styled.div`
 export const Cell = styled.div`
   border-bottom: 1px solid #333;
   border-right: 1px solid #333;
+  position: relative;
 
   /* overflow: hidden; */
 
@@ -124,4 +125,23 @@ export const Cell = styled.div`
         box-sizing: border-box;
       } */
     `};
+
+  select {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    border: none;
+    outline: none;
+    opacity: 0;
+    cursor: pointer;
+  }
+`;
+
+export const Workers = styled.div`
+  display: inline-block;
+  button {
+    background: transparent;
+    border: none;
+  }
 `;

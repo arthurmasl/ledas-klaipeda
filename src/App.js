@@ -1,18 +1,21 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
+import * as firebase from 'firebase';
+
 import { library } from '@fortawesome/fontawesome-svg-core';
 
 import {
   faSnowflake,
   faHockeyPuck,
   faSkating,
+  faBolt,
 } from '@fortawesome/free-solid-svg-icons';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { Container, Content, Grid, Sidebar, Cell } from './style';
+import { Container, Content, Grid, Sidebar, Cell, Workers } from './style';
 
-library.add(faSnowflake, faHockeyPuck, faSkating);
+library.add(faSnowflake, faHockeyPuck, faSkating, faBolt);
 
 const myDate = () => {
   const a = new Date();
@@ -20,6 +23,14 @@ const myDate = () => {
 
   return r;
 };
+
+const myTime = () => {
+  var d = new Date();
+
+  return { h: d.getHours(), m: d.getMinutes() };
+};
+
+const time = myTime();
 
 myDate();
 
@@ -92,7 +103,11 @@ const App = () => {
           <Sidebar>
             <Cell type="black" empty />
             {storage.time.map((item, i) => (
-              <Cell key={i} type="black">
+              <Cell
+                key={i}
+                type="black"
+                current={time.h.toString().includes(item.time1.slice(0, 2))}
+              >
                 <span>{item.time1}</span>
                 <span>{item.time2}</span>
               </Cell>
@@ -105,15 +120,21 @@ const App = () => {
                 <span>{i + 1}</span>
                 {/* <span>{item.week}</span> */}
                 <span>{item.day}</span>
+                {/* <select
+                  value={db.collection('storage').doc(item.day).worker}
+                  onChange={e => setWorkers(e, item.day)}
+                >
+                  <option value="-">¯\_(ツ)_/¯</option>
+                  <option value="A">Arūnas</option>
+                  <option value="K">Kęstas</option>
+                </select> */}
               </Cell>
             ))}
 
             {storage.content.map((item, i) => (
               <Cell key={i} type={item} icon>
                 <span>
-                  {item === 'available' && (
-                    <FontAwesomeIcon icon="skating" size="lg" />
-                  )}
+                  {item === 'available' && <FontAwesomeIcon icon="bolt" size="lg" />}
                 </span>
                 <span>
                   {item === 'hockey' && (
