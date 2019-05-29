@@ -17,6 +17,10 @@ const changeWinowHeight = () => {
 };
 
 changeWinowHeight();
-window.addEventListener('resize', () => {
-  changeWinowHeight();
-});
+// window.addEventListener('resize', () => {
+//   changeWinowHeight();
+// });
+
+document.body.ontouchend = e => {
+  e.preventDefault();
+};

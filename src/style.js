@@ -5,10 +5,9 @@ export const Container = styled.div`
   justify-content: center;
   background-color: #333;
   height: 100vh;
+  height: calc(var(--vh, 1vh) * 100);
   overflow: hidden;
   width: 100%;
-
-  position: relative;
 `;
 
 export const Grid = styled.main`

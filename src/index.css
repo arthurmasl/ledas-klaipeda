@@ -8,6 +8,14 @@ body {
   height: 100vh;
   max-height: 100vh;
   overflow: hidden;
+
+}
+
+html, body {
+  overflow: hidden;
+}
+body {
+  position: fixed;
 }
 
 code {

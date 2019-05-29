@@ -24,7 +24,8 @@ const myDate = () => {
 myDate();
 
 const apiUrl =
-  process.env.NODE_ENV === 'development' ? 'http://localhost:8000/api' : '/api';
+  // process.env.NODE_ENV === 'development' ? 'http://localhost:8000/api' : '/api';
+  'https://ledas-klaipeda.herokuapp.com/api';
 
 const App = () => {
   const [storage, setStorage] = useState([]);
