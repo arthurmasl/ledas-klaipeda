@@ -53,7 +53,13 @@ export const Cell = styled.div`
   span {
     white-space: nowrap;
 
-    font-size: 3.5vmin;
+    font-size: 1.5vmin;
+  }
+
+  @media (max-width: 500px) {
+    span {
+      font-size: 3.5vmin;
+    }
   }
 
   ${props =>

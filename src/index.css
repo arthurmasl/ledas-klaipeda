@@ -8,14 +8,20 @@ body {
   height: 100vh;
   max-height: 100vh;
   overflow: hidden;
-
 }
 
-html, body {
+html,
+body {
   overflow: hidden;
 }
 body {
-  position: fixed;
+  /* position: fixed; */
+}
+
+@media (max-width: 500px) {
+  body {
+    position: fixed;
+  }
 }
 
 code {
