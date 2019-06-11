@@ -57,6 +57,7 @@ export const Cell = styled.div`
     display: block;
 
     font-size: 1.5vmin;
+    font-weight: 600;
   }
 
   @media (max-width: 500px) {
