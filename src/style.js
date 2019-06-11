@@ -42,6 +42,7 @@ export const Cell = styled.div`
 
   font-size: 14px;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   text-align: center;
@@ -53,6 +54,7 @@ export const Cell = styled.div`
 
   span {
     white-space: nowrap;
+    display: block;
 
     font-size: 1.5vmin;
   }
