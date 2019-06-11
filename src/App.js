@@ -41,6 +41,10 @@ const App = () => {
   const [io, setIo] = useState();
 
   useEffect(() => {
+    if (localStorage.getItem('ledas-klaipeda')) {
+      setStorage(JSON.parse(localStorage.getItem('ledas-klaipeda')));
+    }
+
     axios.get(apiUrl).then(res => {
       let newRes = res.data;
 
@@ -80,6 +84,7 @@ const App = () => {
           }),
       };
 
+      window.localStorage.setItem('ledas-klaipeda', JSON.stringify(newRes));
       setStorage(newRes);
     });
   }, []);
@@ -99,11 +104,10 @@ const App = () => {
       <Container>
         <Grid>
           <Sidebar>
-            <Cell type="black" empty />
+            <Cell empty />
             {storage.time.map((item, i) => (
               <Cell
                 key={i}
-                type="black"
                 current={time.h.toString().includes(item.time1.slice(0, 2))}
               >
                 <span>{item.time1}</span>
@@ -114,7 +118,7 @@ const App = () => {
 
           <Content>
             {storage.date.map((item, i) => (
-              <Cell key={i} type="black" current={i === io}>
+              <Cell key={i} type="black" current={i !== io}>
                 <span>{i + 1}</span>
                 {/* <span>{item.week}</span> */}
                 <span>{item.day}</span>

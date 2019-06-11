@@ -46,7 +46,7 @@ export const Cell = styled.div`
   align-items: center;
   text-align: center;
 
-  background-color: #f0f0f0;
+  background-color: #fbfbfb;
 
   font-weight: 300;
   overflow-wrap: break-word;
@@ -108,9 +108,9 @@ export const Cell = styled.div`
     css`
       position: relative;
 
-      background-color: #fadfba;
+      /* background-color: #fadfba; */
 
-      /* &:before {
+      &:before {
         content: '';
         position: absolute;
         width: 100%;
@@ -118,12 +118,19 @@ export const Cell = styled.div`
         left: 0;
         top: 0;
         z-index: 100;
-        background-color: rgba(255, 255, 255, 0.2);
+        background-color: rgba(255, 255, 255, 0.4);
 
-        border-left: 2px solid #333;
-        border-right: 2px solid #333;
+        /* border-left: 2px solid #333; */
+        /* border-right: 2px solid #333; */
         box-sizing: border-box;
-      } */
+      }
+    `};
+
+  ${props =>
+    !props.current &&
+    props.type === 'black' &&
+    css`
+      background-color: #fadfba;
     `};
 
   select {
