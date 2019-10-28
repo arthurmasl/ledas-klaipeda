@@ -73,7 +73,7 @@ export const Cell = styled.div`
     `};
 
   ${props =>
-    props.type === 'hockey' &&
+    (props.type === 'hockey' || props.type === 'res') &&
     css`
       background-color: #f6b3ba;
     `};
@@ -82,6 +82,12 @@ export const Cell = styled.div`
     props.type === 'figure' &&
     css`
       background-color: #bae1ff;
+    `};
+
+  ${props =>
+    props.type === 'disco' &&
+    css`
+      background-color: #b381c8;
     `};
 
   ${props =>

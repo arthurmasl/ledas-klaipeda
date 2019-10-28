@@ -8,12 +8,14 @@ import {
   faHockeyPuck,
   faSkating,
   faBolt,
+  faTimes,
+  faMusic,
 } from '@fortawesome/free-solid-svg-icons';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Container, Content, Grid, Sidebar, Cell } from './style';
 
-library.add(faSnowflake, faHockeyPuck, faSkating, faBolt);
+library.add(faSnowflake, faHockeyPuck, faSkating, faBolt, faTimes, faMusic);
 
 const myDate = () => {
   const a = new Date();
@@ -31,6 +33,47 @@ const myTime = () => {
 const time = myTime();
 
 myDate();
+
+function romanize(num) {
+  if (isNaN(num)) return NaN;
+  var digits = String(+num).split(''),
+    key = [
+      '',
+      'C',
+      'CC',
+      'CCC',
+      'CD',
+      'D',
+      'DC',
+      'DCC',
+      'DCCC',
+      'CM',
+      '',
+      'X',
+      'XX',
+      'XXX',
+      'XL',
+      'L',
+      'LX',
+      'LXX',
+      'LXXX',
+      'XC',
+      '',
+      'I',
+      'II',
+      'III',
+      'IV',
+      'V',
+      'VI',
+      'VII',
+      'VIII',
+      'IX',
+    ],
+    roman = '',
+    i = 3;
+  while (i--) roman = (key[+digits.pop() + i * 10] || '') + roman;
+  return Array(+digits.join('') + 1).join('M') + roman;
+}
 
 const apiUrl =
   // process.env.NODE_ENV === 'development' ? 'http://localhost:8000/api' : '/api';
@@ -80,6 +123,14 @@ const App = () => {
               return 'figure';
             }
 
+            if (item.toLowerCase().includes('rezervuota')) {
+              return 'res';
+            }
+
+            if (item.toLowerCase().includes('diskoteka')) {
+              return 'disco';
+            }
+
             return item;
           }),
       };
@@ -119,7 +170,7 @@ const App = () => {
           <Content>
             {storage.date.map((item, i) => (
               <Cell key={i} type="black" current={i !== io}>
-                <span>{i + 1}</span>
+                <span>{romanize(i + 1)}</span>
                 {/* <span>{item.week}</span> */}
                 <span>{item.day}</span>
                 {/* <select
@@ -147,6 +198,12 @@ const App = () => {
                   {item === 'figure' && (
                     <FontAwesomeIcon icon="snowflake" size="lg" />
                   )}
+                </span>
+                <span>
+                  {item === 'res' && <FontAwesomeIcon icon="times" size="lg" />}
+                </span>
+                <span>
+                  {item === 'disco' && <FontAwesomeIcon icon="music" size="lg" />}
                 </span>
               </Cell>
             ))}
