@@ -112,7 +112,7 @@ const App = () => {
 
           return newItem;
         }),
-        time: newRes.time.slice(1, 13).map(item => {
+        time: newRes.time.slice(0, 12).map(item => {
           return { time1: item.slice(0, 5), time2: item.slice(6, 11) };
         }),
         content: newRes.content
@@ -146,7 +146,6 @@ const App = () => {
       window.localStorage.setItem('ledas-klaipeda', JSON.stringify(newRes));
       setStorage(newRes);
 
-      console.log(newRes);
     });
   }, [city]);
 
