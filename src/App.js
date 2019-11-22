@@ -167,7 +167,6 @@ const App = () => {
         <Grid>
           <Sidebar>
             <Cell empty>
-              ¯\_(ツ)_/¯
               {/* <select onChange={e => setCity(e.target.value)} value={city}>
                 <option value="klaipeda">Klaipeda</option>
                 <option value="vilnius">Vilnius</option>

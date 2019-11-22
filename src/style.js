@@ -159,6 +159,8 @@ export const Cell = styled.div`
       background-color: #fadfba;
     `};
 
+    scpp
+
   select {
     position: absolute;
     width: 100%;
