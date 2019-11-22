@@ -27,8 +27,25 @@ export const Sidebar = styled.aside`
 
 export const Content = styled.div`
   display: grid !important;
+  /* grid-template-columns: repeat(7, 1fr); */
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr 12fr;
+  /* grid-template-rows: repeat(13, 1fr); */
+
+  /* grid-auto-flow: column; */
+`;
+
+export const ContentDate = styled.div`
+  display: grid;
   grid-template-columns: repeat(7, 1fr);
-  grid-template-rows: repeat(13, 1fr);
+`;
+
+export const ContentDays = styled.div`
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  grid-template-rows: repeat(12, 1fr);
+
+  grid-auto-flow: column;
 `;
 
 export const Cell = styled.div`

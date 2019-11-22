@@ -13,7 +13,7 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { Container, Content, Grid, Sidebar, Cell } from './style';
+import { Container, Content, Grid, Sidebar, Cell, ContentDays, ContentDate } from './style';
 
 library.add(faSnowflake, faHockeyPuck, faSkating, faBolt, faTimes, faMusic);
 
@@ -146,6 +146,8 @@ const App = () => {
       window.localStorage.setItem('ledas-klaipeda', JSON.stringify(newRes));
       setStorage(newRes);
 
+      console.log(newRes);
+
     });
   }, [city]);
 
@@ -165,6 +167,7 @@ const App = () => {
         <Grid>
           <Sidebar>
             <Cell empty>
+              ¯\_(ツ)_/¯
               {/* <select onChange={e => setCity(e.target.value)} value={city}>
                 <option value="klaipeda">Klaipeda</option>
                 <option value="vilnius">Vilnius</option>
@@ -184,12 +187,13 @@ const App = () => {
           </Sidebar>
 
           <Content>
-            {storage.date.map((item, i) => (
-              <Cell key={i} type="black" current={i !== io}>
-                <span>{romanize(i + 1)}</span>
-                {/* <span>{item.week}</span> */}
-                <span>{item.day}</span>
-                {/* <select
+            <ContentDate>
+              {storage.date.map((item, i) => (
+                <Cell key={i} type="black" current={i !== io}>
+                  <span>{romanize(i + 1)}</span>
+                  {/* <span>{item.week}</span> */}
+                  <span>{item.day}</span>
+                  {/* <select
                   value={db.collection('storage').doc(item.day).worker}
                   onChange={e => setWorkers(e, item.day)}
                 >
@@ -197,32 +201,36 @@ const App = () => {
                   <option value="A">Arūnas</option>
                   <option value="K">Kęstas</option>
                 </select> */}
-              </Cell>
-            ))}
+                </Cell>
+              ))}
+            </ContentDate>
 
-            {storage.content.map((item, i) => (
-              <Cell key={i} type={item} icon>
-                <span>
-                  {item === 'available' && <FontAwesomeIcon icon="bolt" size="lg" />}
-                </span>
-                <span>
-                  {item === 'hockey' && (
-                    <FontAwesomeIcon icon="hockey-puck" size="lg" />
-                  )}
-                </span>
-                <span>
-                  {item === 'figure' && (
-                    <FontAwesomeIcon icon="snowflake" size="lg" />
-                  )}
-                </span>
-                <span>
-                  {item === 'res' && <FontAwesomeIcon icon="times" size="lg" />}
-                </span>
-                <span>
-                  {item === 'disco' && <FontAwesomeIcon icon="music" size="lg" />}
-                </span>
-              </Cell>
-            ))}
+
+            <ContentDays>
+              {storage.content.map((item, i) => (
+                <Cell key={i} type={item} icon>
+                  <span>
+                    {item === 'available' && <FontAwesomeIcon icon="bolt" size="lg" />}
+                  </span>
+                  <span>
+                    {item === 'hockey' && (
+                      <FontAwesomeIcon icon="hockey-puck" size="lg" />
+                    )}
+                  </span>
+                  <span>
+                    {item === 'figure' && (
+                      <FontAwesomeIcon icon="snowflake" size="lg" />
+                    )}
+                  </span>
+                  <span>
+                    {item === 'res' && <FontAwesomeIcon icon="times" size="lg" />}
+                  </span>
+                  <span>
+                    {item === 'disco' && <FontAwesomeIcon icon="music" size="lg" />}
+                  </span>
+                </Cell>
+              ))}
+            </ContentDays>
           </Content>
         </Grid>
       </Container>
