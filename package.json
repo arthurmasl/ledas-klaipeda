@@ -18,7 +18,8 @@
     "x-ray": "^2.3.3"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "npm run build && node ./src/server.js",
+    "start2": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
