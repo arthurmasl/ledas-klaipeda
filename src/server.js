@@ -17,7 +17,7 @@ app.use(bodyParser.json({ type: 'application/*+json' }));
 app.use(cors());
 app.use(express.static('build'));
 
-app.get('/api/:city', function (req, res) {
+app.get('/api', function (req, res) {
   res.set({ 'content-type': 'application/json; charset=utf-8' });
 
   let apiUrl =
