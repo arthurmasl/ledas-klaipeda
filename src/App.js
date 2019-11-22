@@ -75,18 +75,26 @@ function romanize(num) {
   return Array(+digits.join('') + 1).join('M') + roman;
 }
 
-const apiUrl =
-  // process.env.NODE_ENV === 'development' ? 'http://localhost:8000/api' : '/api';
-  'https://ledas-klaipeda.herokuapp.com/api';
-
 const App = () => {
   const [storage, setStorage] = useState([]);
   const [io, setIo] = useState();
+  const [city, setCity] = useState('');
+
+  if (city) {
+    localStorage.setItem('ledas-klaipeda-city', JSON.stringify(city));
+  }
 
   useEffect(() => {
     if (localStorage.getItem('ledas-klaipeda')) {
       setStorage(JSON.parse(localStorage.getItem('ledas-klaipeda')));
     }
+
+    if (localStorage.getItem('ledas-klaipeda-city')) {
+      setCity(JSON.parse(localStorage.getItem('ledas-klaipeda-city')));
+    }
+
+    const apiUrl = `https://ledas-klaipeda.herokuapp.com/api`;
+    // const apiUrl = `http://localhost:8000/api/${city}`;
 
     axios.get(apiUrl).then(res => {
       let newRes = res.data;
@@ -137,8 +145,10 @@ const App = () => {
 
       window.localStorage.setItem('ledas-klaipeda', JSON.stringify(newRes));
       setStorage(newRes);
+
+      console.log(newRes);
     });
-  }, []);
+  }, [city]);
 
   useEffect(() => {
     if (storage.date) {
@@ -155,7 +165,14 @@ const App = () => {
       <Container>
         <Grid>
           <Sidebar>
-            <Cell empty />
+            <Cell empty>
+              {/* <select onChange={e => setCity(e.target.value)} value={city}>
+                <option value="klaipeda">Klaipeda</option>
+                <option value="vilnius">Vilnius</option>
+                <option value="kaunas">Kaunas</option>
+                <option value="siauliai">Siauliai</option>
+              </select> */}
+            </Cell>
             {storage.time.map((item, i) => (
               <Cell
                 key={i}
