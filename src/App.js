@@ -10,12 +10,29 @@ import {
   faBolt,
   faTimes,
   faMusic,
+  faCoffee
 } from '@fortawesome/free-solid-svg-icons';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { Container, Content, Grid, Sidebar, Cell, ContentDays, ContentDate } from './style';
+import {
+  Container,
+  Content,
+  Grid,
+  Sidebar,
+  Cell,
+  ContentDays,
+  ContentDate
+} from './style';
 
-library.add(faSnowflake, faHockeyPuck, faSkating, faBolt, faTimes, faMusic);
+library.add(
+  faSnowflake,
+  faHockeyPuck,
+  faSkating,
+  faBolt,
+  faTimes,
+  faMusic,
+  faCoffee
+);
 
 const myDate = () => {
   const a = new Date();
@@ -67,7 +84,7 @@ function romanize(num) {
       'VI',
       'VII',
       'VIII',
-      'IX',
+      'IX'
     ],
     roman = '',
     i = 3;
@@ -94,9 +111,9 @@ const App = () => {
     }
 
     const apiUrl = `https://ledas-klaipeda.herokuapp.com/api`;
-    // const apiUrl = `http://localhost:8000/api/${city}`;
+    // const apiUrl = `http://localhost:8000/api`;
 
-    axios.get(apiUrl).then(res => {
+    axios.get(apiUrl, { params: { city: city } }).then(res => {
       let newRes = res.data;
 
       newRes = {
@@ -107,7 +124,7 @@ const App = () => {
           newItem = {
             ...newItem,
             week: item.replace(/[(\d-\d)]+/g, '').slice(0, 4),
-            day: item.match(/[\d-\d]+/g)[0],
+            day: item.match(/[\d-\d]+/g)[0]
           };
 
           return newItem;
@@ -117,7 +134,9 @@ const App = () => {
         }),
         content: newRes.content
           .filter(item => item)
-          .slice(0, 84)
+          // .slice(0, 84)
+          // .slice(0, 70)
+          .slice(0, city === 'klaipeda' ? 84 : 70)
           .map(item => {
             if (item.includes('€')) {
               return 'available';
@@ -138,16 +157,18 @@ const App = () => {
             if (item.toLowerCase().includes('diskoteka')) {
               return 'disco';
             }
+            if (item.toLowerCase().includes('kerlingas')) {
+              return 'kerl';
+            }
 
             return item;
-          }),
+          })
       };
 
       window.localStorage.setItem('ledas-klaipeda', JSON.stringify(newRes));
       setStorage(newRes);
 
       console.log(newRes);
-
     });
   }, [city]);
 
@@ -165,14 +186,14 @@ const App = () => {
     return (
       <Container>
         <Grid>
-          <Sidebar>
+          <Sidebar city={city}>
             <Cell empty>
-              {/* <select onChange={e => setCity(e.target.value)} value={city}>
+              <select onChange={e => setCity(e.target.value)} value={city}>
                 <option value="klaipeda">Klaipeda</option>
                 <option value="vilnius">Vilnius</option>
-                <option value="kaunas">Kaunas</option>
-                <option value="siauliai">Siauliai</option>
-              </select> */}
+                {/* <option value="kaunas">Kaunas</option> */}
+                {/* <option value="siauliai">Siauliai</option> */}
+              </select>
             </Cell>
             {storage.time.map((item, i) => (
               <Cell
@@ -185,7 +206,7 @@ const App = () => {
             ))}
           </Sidebar>
 
-          <Content>
+          <Content city={city}>
             <ContentDate>
               {storage.date.map((item, i) => (
                 <Cell key={i} type="black" current={i !== io}>
@@ -204,12 +225,13 @@ const App = () => {
               ))}
             </ContentDate>
 
-
-            <ContentDays>
+            <ContentDays city={city}>
               {storage.content.map((item, i) => (
                 <Cell key={i} type={item} icon>
                   <span>
-                    {item === 'available' && <FontAwesomeIcon icon="bolt" size="lg" />}
+                    {item === 'available' && (
+                      <FontAwesomeIcon icon="bolt" size="lg" />
+                    )}
                   </span>
                   <span>
                     {item === 'hockey' && (
@@ -222,10 +244,19 @@ const App = () => {
                     )}
                   </span>
                   <span>
-                    {item === 'res' && <FontAwesomeIcon icon="times" size="lg" />}
+                    {item === 'res' && (
+                      <FontAwesomeIcon icon="times" size="lg" />
+                    )}
                   </span>
                   <span>
-                    {item === 'disco' && <FontAwesomeIcon icon="music" size="lg" />}
+                    {item === 'disco' && (
+                      <FontAwesomeIcon icon="music" size="lg" />
+                    )}
+                  </span>
+                  <span>
+                    {item === 'kerl' && (
+                      <FontAwesomeIcon icon="coffee" size="lg" />
+                    )}
                   </span>
                 </Cell>
               ))}

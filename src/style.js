@@ -23,6 +23,12 @@ export const Grid = styled.main`
 export const Sidebar = styled.aside`
   display: grid;
   grid-template-rows: repeat(13, 1fr);
+
+  ${props =>
+    props.city === 'vilnius' &&
+    css`
+      grid-template-rows: repeat(11, 1fr) !important;
+    `};
 `;
 
 export const Content = styled.div`
@@ -32,7 +38,11 @@ export const Content = styled.div`
   grid-template-rows: 1fr 12fr;
   /* grid-template-rows: repeat(13, 1fr); */
 
-  /* grid-auto-flow: column; */
+  ${props =>
+    props.city === 'vilnius' &&
+    css`
+      grid-template-rows: 1fr 10fr !important;
+    `};
 `;
 
 export const ContentDate = styled.div`
@@ -44,6 +54,12 @@ export const ContentDays = styled.div`
   display: grid;
   grid-template-columns: repeat(7, 1fr);
   grid-template-rows: repeat(12, 1fr);
+
+  ${props =>
+    props.city === 'vilnius' &&
+    css`
+      grid-template-rows: repeat(10, 1fr) !important;
+    `};
 
   grid-auto-flow: column;
 `;
@@ -90,7 +106,9 @@ export const Cell = styled.div`
     `};
 
   ${props =>
-    (props.type === 'hockey' || props.type === 'res') &&
+    (props.type === 'hockey' ||
+      props.type === 'res' ||
+      props.type === 'kerl') &&
     css`
       background-color: #f6b3ba;
     `};
@@ -159,9 +177,7 @@ export const Cell = styled.div`
       background-color: #fadfba;
     `};
 
-    scpp
-
-  select {
+  scpp select {
     position: absolute;
     width: 100%;
     height: 100%;
