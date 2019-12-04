@@ -136,7 +136,7 @@ const App = () => {
           .filter(item => item)
           // .slice(0, 84)
           // .slice(0, 70)
-          .slice(0, city === 'klaipeda' ? 84 : 70)
+          .slice(0, city === 'vilnius' ? 70 : 84)
           .map(item => {
             if (item.includes('€')) {
               return 'available';
