@@ -187,10 +187,10 @@ const App = () => {
       <Container>
         <Grid>
           <Sidebar city={city}>
-            <Cell empty>
+            <Cell empty select>
               <select onChange={e => setCity(e.target.value)} value={city}>
-                <option value="klaipeda">Klaipeda</option>
-                <option value="vilnius">Vilnius</option>
+                <option value="klaipeda">KLP</option>
+                <option value="vilnius">VLN</option>
                 {/* <option value="kaunas">Kaunas</option> */}
                 {/* <option value="siauliai">Siauliai</option> */}
               </select>

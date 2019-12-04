@@ -100,6 +100,26 @@ export const Cell = styled.div`
   }
 
   ${props =>
+    props.select &&
+    css`
+      overflow: hidden;
+      z-index: 99999;
+
+      select {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        z-index: 99999;
+        top: 0;
+        left: 0;
+        outline: none;
+        border: none;
+        font-size: 10px;
+        text-align: center;
+      }
+    `};
+
+  ${props =>
     props.type === 'available' &&
     css`
       background-color: #bafec9;

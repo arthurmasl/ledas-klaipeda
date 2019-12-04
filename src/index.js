@@ -21,6 +21,6 @@ window.addEventListener('resize', () => {
   changeWinowHeight();
 });
 
-document.body.ontouchend = e => {
-  e.preventDefault();
-};
+// document.body.ontouchend = e => {
+//   e.preventDefault();
+// };
