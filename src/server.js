@@ -23,11 +23,11 @@ app.get('/api', function(req, res) {
   console.log(req.query.city);
 
   let apiUrl =
-    'https://www.akropolis.lt/lt/klaipeda/titulinis/pramogos/ledo-rezervacijos/akropolio-ledo-paslaugos';
+    'https://www.akropolis.lt/lt/klaipeda/titulinis/ledo-rezervacijos/akropolio-ledo-paslaugos';
 
   if (req.query.city === 'vilnius')
     apiUrl =
-      'https://www.akropolis.lt/lt/vilnius/main-page-setup/pramogos/ledo-rezervacijos/akropolio-ledo-paslaugos';
+      'https://www.akropolis.lt/lt/vilnius/titulinis/ledo-rezervacijos/akropolio-ledo-paslaugos';
 
   // if (req.query.city === 'siauliai')
   //   apiUrl =
